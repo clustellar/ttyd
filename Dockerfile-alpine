@@ -1,11 +1,45 @@
 FROM alpine:3.6
-LABEL maintainer "Shuanglei Tao - tsl0922@gmail.com" \
-    maintainer "Damien Duportal - damien.duportal@gmail.com"
+LABEL maintainer "taemon1337@gmail.com"
 
-RUN apk add --update \
-    bash \
+ENV HOME=/root
+
+RUN apk add --update --no-cache \
     ttyd \
-  && rm -rf /var/cache/apk/*
+    vim \
+    ca-certificates \
+    curl \
+    rsync \
+    openssh \
+    git \
+    bash \
+  && rm -rf /var/cache/apk/* \
+  && mkdir -p ~/.vim
+
+ADD vim.tgz $HOME
+
+COPY vimrc $HOME/.vimrc
+
+#RUN mkdir -p ~/.vim/autoload ~/.vim/bundle && \
+#    curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim && \
+#    echo "execute pathogen#infect()" >> ~/.vimrc && \
+#    echo "syntax on" >> ~/.vimrc && \
+#    echo "filetype plugin indent on" >> ~/.vimrc && \
+#    echo "set tabstop=2" >> ~/.vimrc && \
+#    echo "set shiftwidth=2" >> ~/.vimrc && \
+#    echo "set expandtab" >> ~/.vimrc
+#    cd ~/.vim/bundle/ && \
+#    git clone https://github.com/tpope/vim-sensible.git && \
+#    git clone https://github.com/pangloss/vim-javascript && \
+#    git clone https://github.com/docker/docker && \
+#    git clone https://github.com/altercation/vim-colors-solarized && \
+#    git clone https://github.com/tpope/vim-fugitive && \
+#    git clone https://github.com/fatih/vim-go && \
+#    git clone https://github.com/othree/javascript-libraries-syntax.vim && \
+#    git clone https://github.com/posva/vim-vue && \
+#    git clone https://github.com/moll/vim-node && \
+#    git clone https://github.com/scrooloose/nerdtree && \
+#    git clone https://github.com/Xuyuanp/nerdtree-git-plugin.git
+    
 
 EXPOSE 7681
 
