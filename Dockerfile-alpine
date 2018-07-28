@@ -11,6 +11,7 @@ RUN apk add --update --no-cache \
     rsync \
     openssh \
     git \
+    docker \
     bash \
   && rm -rf /var/cache/apk/* \
   && mkdir -p ~/.vim
