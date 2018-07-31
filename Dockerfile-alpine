@@ -10,6 +10,7 @@ RUN apk add --update --no-cache \
     curl \
     rsync \
     openssh \
+    mosh \
     git \
     docker \
     bash \
